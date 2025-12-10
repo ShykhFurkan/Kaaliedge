@@ -48,7 +48,7 @@ export function ContactSection() {
     }
 
     return (
-        <section id="contact" className="bg-transparent min-h-screen py-16">
+        <section id="contact" className="bg-transparent min-h-screen py-16 fade-up">
             <div className="text-center mb-12">
                 <Container>
                     <h2 className="text-4xl font-bold font-heading text-slate-900 mb-6 tracking-tight">Contact Us</h2>
@@ -115,17 +115,17 @@ export function ContactSection() {
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label htmlFor="name" className="text-sm font-medium text-slate-900">Full Name</label>
-                                    <input name="name" id="name" required className="w-full p-4 rounded-xl border border-indigo-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-indigo-200 outline-none transition-all placeholder:text-slate-400" placeholder="Enter your name" />
+                                    <input name="name" id="name" autoComplete="name" required className="w-full p-4 rounded-xl border border-indigo-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-indigo-200 outline-none transition-all placeholder:text-slate-400" placeholder="Enter your name" />
                                 </div>
                                 <div className="space-y-2">
                                     <label htmlFor="phone" className="text-sm font-medium text-slate-900">Phone Number</label>
-                                    <input name="phone" id="phone" required className="w-full p-4 rounded-xl border border-indigo-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-indigo-200 outline-none transition-all placeholder:text-slate-400" placeholder="+91 XXXXX XXXXX" />
+                                    <input name="phone" id="phone" autoComplete="tel" required className="w-full p-4 rounded-xl border border-indigo-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-indigo-200 outline-none transition-all placeholder:text-slate-400" placeholder="+91 XXXXX XXXXX" />
                                 </div>
                             </div>
 
                             <div className="space-y-2">
                                 <label htmlFor="email" className="text-sm font-medium text-slate-900">Email Address</label>
-                                <input name="email" id="email" type="email" required className="w-full p-4 rounded-xl border border-indigo-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-indigo-200 outline-none transition-all placeholder:text-slate-400" placeholder="name@example.com" />
+                                <input name="email" id="email" type="email" autoComplete="email" required className="w-full p-4 rounded-xl border border-indigo-200 bg-white/50 focus:bg-white focus:ring-2 focus:ring-indigo-200 outline-none transition-all placeholder:text-slate-400" placeholder="name@example.com" />
                             </div>
 
                             <div className="space-y-2">

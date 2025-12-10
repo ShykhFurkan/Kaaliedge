@@ -1,14 +1,9 @@
-"use client";
 
 import { Container } from "@/components/ui/container";
-import { Card, CardContent } from "@/components/ui/card";
-import { motion } from "framer-motion";
-import { useIsMobile } from "@/hooks/use-is-mobile";
+import { Card } from "@/components/ui/card";
 import Image from "next/image";
 
 export function AboutSection() {
-    const isMobile = useIsMobile();
-
     return (
         <section id="about" className="bg-transparent min-h-screen py-16 border-b border-border">
             {/* Hero */}
@@ -24,13 +19,7 @@ export function AboutSection() {
             <Container className="space-y-16">
                 {/* Story Section */}
                 <div className="grid md:grid-cols-2 gap-12 items-stretch">
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: isMobile ? 0.3 : 0.6 }}
-                        className="h-full"
-                    >
+                    <div className="h-full fade-up">
                         <Card className="h-full border border-slate-200/60 shadow-sm bg-slate-50/80 backdrop-blur-md p-8 md:p-10 rounded-3xl hover:shadow-slate-200/50 transition-all duration-300">
                             <div className="space-y-8 h-full flex flex-col justify-center">
                                 <h3 className="text-3xl font-bold font-heading text-slate-900 border-l-4 border-slate-300 pl-4">Our Story</h3>
@@ -44,15 +33,9 @@ export function AboutSection() {
                                 </div>
                             </div>
                         </Card>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: isMobile ? 0.3 : 0.6 }}
-                        className="h-full"
-                    >
+                    <div className="h-full fade-up" style={{ animationDelay: "0.2s" }}>
                         <Card className="h-full min-h-[400px] border border-blue-200/60 shadow-sm bg-blue-50/80 backdrop-blur-md p-4 rounded-3xl hover:shadow-blue-200/50 transition-all duration-300 flex items-center justify-center">
                             <div className="relative w-full h-full min-h-[400px] overflow-hidden rounded-2xl">
                                 <Image
@@ -64,7 +47,7 @@ export function AboutSection() {
                                 />
                             </div>
                         </Card>
-                    </motion.div>
+                    </div>
                 </div>
 
             </Container>

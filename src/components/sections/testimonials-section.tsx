@@ -1,10 +1,8 @@
-"use client";
 
 import { Container } from "@/components/ui/container";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { testimonials } from "@/data/testimonials";
-import { Quote } from "lucide-react";
-import { motion } from "framer-motion";
+import { Quote, ArrowRight } from "lucide-react";
 
 const colors = [
     {
@@ -67,16 +65,18 @@ export function TestimonialsSection() {
                 </Container>
             </div>
 
-            <Container className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <Container className="relative flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-8 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 no-scrollbar">
+                <div className="absolute left-4 -top-8 flex items-center gap-2 md:hidden text-xs font-bold text-black animate-pulse">
+                    <ArrowRight className="w-3 h-3" />
+                    <span>Swipe right to see more</span>
+                </div>
                 {testimonials.map((t, index) => {
                     const theme = colors[index % colors.length];
                     return (
-                        <motion.div
+                        <div
                             key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
+                            className="h-full min-w-[85vw] md:min-w-0 snap-center fade-up"
+                            style={{ animationDelay: `${index * 0.1}s` }}
                         >
                             <Card className={`h-full border shadow-sm backdrop-blur-md hover:-translate-y-2 transition-all duration-300 rounded-2xl group ${theme.bg} ${theme.border}`}>
                                 <CardHeader className="pb-4 pt-8 px-8">
@@ -95,7 +95,7 @@ export function TestimonialsSection() {
                                     </div>
                                 </CardContent>
                             </Card>
-                        </motion.div>
+                        </div>
                     );
                 })}
             </Container>

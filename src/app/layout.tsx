@@ -8,32 +8,56 @@ const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
 export const metadata: Metadata = {
-  title: "Kaali Edge - MBBS Abroad Consultancy",
-  description: "Guiding Kashmiri students from Anantnag to global medical careers with trust and transparency. Expert counseling for MBBS in Russia, Uzbekistan, Kazakhstan, and more.",
-  keywords: ["MBBS Abroad", "Kaali Edge", "Education Consultancy", "Anantnag", "Kashmir", "Study Medicine", "Russia", "Uzbekistan", "Kazakhstan", "Kyrgyzstan"],
+  title: "Kaali Edge | MBBS Abroad Consultants in Kashmir - Official Website",
+  description: "Kaali Edge: Trusted international education consultants in Anantnag, Kashmir. Expert guidance for MBBS admissions in Russia, Uzbekistan, Kazakhstan & more. Contact us for transparent student support.",
+  keywords: ["Kaali Edge", "Kaali Consultants", "MBBS abroad consultants Kashmir", "Study MBBS abroad", "Education consultancy Anantnag", "Medical admission guidance", "Student visa support", "Dr. Mustansir"],
   authors: [{ name: "Dr. Mustansir" }],
   openGraph: {
-    title: "Kaali Edge - Trustworthy MBBS Abroad Consultancy",
-    description: "Your gateway to a global medical career. Personalized counseling, transparent process, and end-to-end support.",
-    url: "https://kaaliedge.com", // Placeholder URL
+    title: "Kaali Edge - Premier MBBS Abroad Consultancy",
+    description: "Start your medical journey with trust. Kaali Edge provides transparent, end-to-end guidance for Kashmiri students seeking MBBS admission abroad.",
+    url: "https://kaaliedge.com",
     siteName: "Kaali Edge",
     locale: "en_US",
     type: "website",
+    images: [{ url: "https://kaaliedge.com/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kaali Edge - MBBS Abroad Consultancy",
-    description: "Guiding Kashmiri students toward global medical careers with trust and transparency.",
-    creator: "@kaaliedge", // Placeholder handle
+    title: "Kaali Edge - MBBS Abroad Consultants",
+    description: "Trusted guidance for MBBS aspirants in Kashmir. Contact Kaali Edge for transparent admissions.",
+    creator: "@kaaliedge",
   },
+  alternates: {
+    canonical: "https://kaaliedge.com",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Kaali Edge",
+  "url": "https://kaaliedge.com",
+  "logo": "https://kaaliedge.com/logo.png",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-6005533853",
+    "contactType": "customer service",
+    "areaServed": "IN",
+    "availableLanguage": ["English", "Urdu", "Kashmiri", "Hindi"]
+  },
+  "sameAs": [
+    "https://facebook.com/kaaliedge",
+    "https://instagram.com/kaaliedge",
+    "https://linkedin.com/company/kaaliedge"
+  ]
 };
 
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
-  viewportFit: 'cover',
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: '#ffffff',
 };
 
 import { Navbar } from "@/components/layout/navbar";
@@ -53,7 +77,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(inter.variable, dmSans.variable, playfair.variable, "font-sans antialiased text-foreground min-h-screen flex flex-col")}>
+      <body className={cn(inter.variable, dmSans.variable, playfair.variable, "font-sans antialiased text-foreground min-h-screen flex flex-col overflow-x-hidden")}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
@@ -62,6 +86,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <BackgroundPattern />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
           <ModalProvider>
             <Navbar />
             <main className="flex-1">

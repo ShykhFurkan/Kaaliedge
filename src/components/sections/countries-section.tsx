@@ -1,15 +1,10 @@
-"use client";
 
 import { Container } from "@/components/ui/container";
 import { countries } from "@/data/countries";
 import Link from "next/link";
 import { ArrowRight, Wallet, Clock } from "lucide-react";
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { useIsMobile } from "@/hooks/use-is-mobile";
 
 export function CountriesSection() {
-    const isMobile = useIsMobile();
     return (
         <section id="countries" className="bg-transparent py-24 relative overflow-hidden border-t border-slate-200/50">
             <Container>
@@ -20,7 +15,12 @@ export function CountriesSection() {
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-10">
+                <div className="flex items-center gap-2 mb-4 md:hidden text-xs font-bold text-black animate-pulse px-1">
+                    <ArrowRight className="w-3 h-3" />
+                    <span>Swipe right to see more</span>
+                </div>
+
+                <div className="flex md:grid md:grid-cols-3 gap-6 md:gap-10 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-8 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 no-scrollbar">
                     {countries.map((country, index) => {
                         // Color Theme Logic based on User Request directly matching Mission Section
                         let themeClass = "";
@@ -66,12 +66,10 @@ export function CountriesSection() {
                         }
 
                         return (
-                            <motion.div
+                            <div
                                 key={country.slug}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * (isMobile ? 0.05 : 0.1), duration: isMobile ? 0.3 : 0.5 }}
+                                className="min-w-[85vw] md:min-w-0 snap-center fade-up"
+                                style={{ animationDelay: `${index * 0.1}s` }}
                             >
                                 <Link href={`/countries/${country.slug}`} className="block group h-full">
                                     <div className={`relative h-full overflow-hidden transition-all duration-500 ease-out hover:-translate-y-3 pt-12 pb-8 px-8 rounded-3xl border ${borderClass} shadow-xl backdrop-blur-md ${bgClass}`}>
@@ -112,7 +110,7 @@ export function CountriesSection() {
                                         </div>
                                     </div>
                                 </Link>
-                            </motion.div>
+                            </div>
                         );
                     })}
                 </div>

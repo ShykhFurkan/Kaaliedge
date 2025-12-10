@@ -1,78 +1,11 @@
-"use client";
 
 import { Container } from "@/components/ui/container";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText, Plane, Home, GraduationCap, CheckCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { BookConsultationBtn } from "@/components/common/book-consultation-btn";
-import { motion } from "framer-motion";
-import { useIsMobile } from "@/hooks/use-is-mobile";
-
-const services = [
-    {
-        icon: GraduationCap,
-        title: "Admission Counseling",
-        description: "Personalized guidance to help you select the right country and university based on your budget and academic goals. We also provide basic NEET guidance.",
-        color: "text-blue-900",
-        iconColor: "text-blue-700",
-        iconBg: "bg-white border-blue-200",
-        cardBg: "bg-blue-50/80 hover:bg-blue-100/80 hover:shadow-blue-200/50",
-        borderColor: "border-blue-200"
-    },
-    {
-        icon: FileText,
-        title: "Documentation Support",
-        description: "Complete assistance with apostille, translation, and embassy legalization. We handle the paperwork so you don't have to worry about errors.",
-        color: "text-emerald-900",
-        iconColor: "text-emerald-700",
-        iconBg: "bg-white border-emerald-200",
-        cardBg: "bg-emerald-50/80 hover:bg-emerald-100/80 hover:shadow-emerald-200/50",
-        borderColor: "border-emerald-200"
-    },
-    {
-        icon: CheckCircle,
-        title: "Visa Assistance",
-        description: "End-to-end support for student visa applications, including mock interviews if required and checklist verification to ensure 100% success.",
-        color: "text-purple-900",
-        iconColor: "text-purple-700",
-        iconBg: "bg-white border-purple-200",
-        cardBg: "bg-purple-50/80 hover:bg-purple-100/80 hover:shadow-purple-200/50",
-        borderColor: "border-purple-200"
-    },
-    {
-        icon: Plane,
-        title: "Travel Arrangements",
-        description: "Group bookings for students to ensure they travel together. We provide pre-departure briefings and airport assistance.",
-        color: "text-sky-900",
-        iconColor: "text-sky-700",
-        iconBg: "bg-white border-sky-200",
-        cardBg: "bg-sky-50/80 hover:bg-sky-100/80 hover:shadow-sky-200/50",
-        borderColor: "border-sky-200"
-    },
-    {
-        icon: Home,
-        title: "Post-Arrival Support",
-        description: "We don't leave you at the airport. Our local coordinators assist with hostel allotment, SIM cards, bank account opening, and university registration.",
-        color: "text-amber-900",
-        iconColor: "text-amber-700",
-        iconBg: "bg-white border-amber-200",
-        cardBg: "bg-amber-50/80 hover:bg-amber-100/80 hover:shadow-amber-200/50",
-        borderColor: "border-amber-200"
-    },
-    {
-        icon: CheckCircle,
-        title: "MCI/NMC Guidance",
-        description: "Guidance on the latest NMC regulations to ensure your degree is valid for practice in India. We keep you updated on NEXT exam patterns.",
-        color: "text-rose-900",
-        iconColor: "text-rose-700",
-        iconBg: "bg-white border-rose-200",
-        cardBg: "bg-rose-50/80 hover:bg-rose-100/80 hover:shadow-rose-200/50",
-        borderColor: "border-rose-200"
-    }
-];
+import { services } from "@/data/services";
 
 export function ServicesSection() {
-    const isMobile = useIsMobile();
-
     return (
         <section id="services" className="bg-transparent min-h-screen py-16 border-b border-border">
             {/* Hero */}
@@ -86,14 +19,18 @@ export function ServicesSection() {
             </div>
 
             <Container>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <div className="flex items-center gap-2 mb-4 md:hidden text-xs font-bold text-black animate-pulse px-1">
+                    <ArrowRight className="w-3 h-3" />
+                    <span>Swipe right to see more</span>
+                </div>
+
+                {/* Mobile: Horizontal Scroll | Desktop: Grid */}
+                <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-8 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 no-scrollbar">
                     {services.map((service, index) => (
-                        <motion.div
+                        <div
                             key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * (isMobile ? 0.05 : 0.1), duration: isMobile ? 0.3 : 0.5 }}
+                            className="min-w-[85vw] md:min-w-0 snap-center fade-up"
+                            style={{ animationDelay: `${index * 0.1}s` }}
                         >
                             <Card className={`h-full border shadow-sm backdrop-blur-md hover:-translate-y-2 transition-all duration-300 group ${service.cardBg} ${service.borderColor}`}>
                                 <CardHeader className="pb-2">
@@ -108,7 +45,7 @@ export function ServicesSection() {
                                     </p>
                                 </CardContent>
                             </Card>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
 

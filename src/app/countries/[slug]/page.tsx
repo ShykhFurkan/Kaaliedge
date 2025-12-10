@@ -5,12 +5,12 @@ import { countries } from "@/data/countries";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle, MapPin, DollarSign, Cloud, Shield, Utensils } from "lucide-react";
+import { CheckCircle, MapPin, Cloud, Shield, Utensils } from "lucide-react";
 import { BookConsultationBtn } from "@/components/common/book-consultation-btn";
 
-interface Props {
+type Props = {
     params: Promise<{ slug: string }>;
-}
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;

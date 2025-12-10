@@ -48,8 +48,25 @@ export function Hero() {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                className="w-full sm:w-auto"
                             >
-                                <BookConsultationBtn size="lg" className="bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 dark:bg-white dark:text-black text-lg h-14 px-10 shadow-xl" label="Book Free Consultation" />
+                                <BookConsultationBtn size="lg" className="w-full sm:w-[280px] bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 dark:bg-white dark:text-black h-12 px-8 text-base sm:h-14 sm:px-10 sm:text-lg shadow-xl" label="Book Free Consultation" />
+                            </motion.div>
+
+                            {/* Simple SEO-friendly Contact Button */}
+                            <motion.div
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                className="w-full sm:w-auto"
+                            >
+                                <Link
+                                    href="/contact"
+                                    className={cn(buttonVariants({ size: "lg" }), "w-full sm:w-[280px] bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 dark:bg-white dark:text-black h-12 px-8 text-base sm:h-14 sm:px-10 sm:text-lg shadow-xl")}
+                                    aria-label="Contact Kaali Edge Support"
+                                >
+                                    Contact Support
+                                </Link>
                             </motion.div>
                         </div>
                     </motion.div>

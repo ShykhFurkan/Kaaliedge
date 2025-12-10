@@ -4,7 +4,7 @@ import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react
 
 export function Footer() {
     return (
-        <footer className="bg-muted border-t">
+        <footer className="bg-muted border-t fade-up">
             <Container className="py-12 md:py-16">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div className="space-y-4">
@@ -54,13 +54,13 @@ export function Footer() {
                         </ul>
                         <div className="flex gap-4 mt-6">
                             {/* Social placeholders */}
-                            <Link href="#" className="h-8 w-8 rounded-full bg-background border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all">
+                            <Link href="#" aria-label="Instagram" className="h-8 w-8 rounded-full bg-background border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all">
                                 <Instagram className="h-4 w-4" />
                             </Link>
-                            <Link href="#" className="h-8 w-8 rounded-full bg-background border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all">
+                            <Link href="#" aria-label="Facebook" className="h-8 w-8 rounded-full bg-background border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all">
                                 <Facebook className="h-4 w-4" />
                             </Link>
-                            <Link href="#" className="h-8 w-8 rounded-full bg-background border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all">
+                            <Link href="#" aria-label="LinkedIn" className="h-8 w-8 rounded-full bg-background border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all">
                                 <Linkedin className="h-4 w-4" />
                             </Link>
                         </div>
