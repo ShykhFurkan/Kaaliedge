@@ -57,7 +57,7 @@ const colors = [
 
 export function TestimonialsSection() {
     return (
-        <section id="testimonials" className="bg-transparent min-h-screen py-16">
+        <section id="testimonials" className="bg-transparent min-h-screen py-16 flex flex-col justify-center">
             <div className="text-center mb-12">
                 <Container>
                     <h2 className="text-4xl font-bold font-heading text-slate-900 mb-6 tracking-tight">Success Stories</h2>
@@ -65,7 +65,7 @@ export function TestimonialsSection() {
                 </Container>
             </div>
 
-            <Container className="relative flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-8 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 no-scrollbar">
+            <Container className="relative flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-8 md:pb-0 no-scrollbar">
                 <div className="absolute left-4 -top-8 flex items-center gap-2 md:hidden text-xs font-bold text-black animate-pulse">
                     <ArrowRight className="w-3 h-3" />
                     <span>Swipe right to see more</span>
