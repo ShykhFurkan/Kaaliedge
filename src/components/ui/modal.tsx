@@ -12,9 +12,10 @@ interface ModalProps {
     children: React.ReactNode;
     title?: string;
     className?: string;
+    hideHeader?: boolean;
 }
 
-export function Modal({ isOpen, onClose, children, title, className }: ModalProps) {
+export function Modal({ isOpen, onClose, children, title, className, hideHeader }: ModalProps) {
     // Close on Escape key
     React.useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
@@ -52,17 +53,29 @@ export function Modal({ isOpen, onClose, children, title, className }: ModalProp
                             exit={{ scale: 0.95, opacity: 0, y: 20 }}
                             transition={{ duration: 0.2 }}
                             className={cn(
-                                "w-full max-w-lg bg-background rounded-lg shadow-lg pointer-events-auto flex flex-col max-h-[90vh]",
+                                "w-full max-w-lg bg-background rounded-lg shadow-lg pointer-events-auto flex flex-col max-h-[90vh] relative",
                                 className
                             )}
                         >
-                            <div className="flex items-center justify-between p-4 border-b">
-                                <h2 className="text-lg font-semibold font-heading">{title}</h2>
-                                <Button variant="ghost" size="icon" onClick={onClose} className="h-8 w-8">
+                            {hideHeader ? (
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={onClose}
+                                    className="absolute top-3 right-3 h-8 w-8 z-10"
+                                >
                                     <X className="h-4 w-4" />
                                     <span className="sr-only">Close</span>
                                 </Button>
-                            </div>
+                            ) : (
+                                <div className="flex items-center justify-between p-4 border-b">
+                                    <h2 className="text-lg font-semibold font-heading">{title}</h2>
+                                    <Button variant="ghost" size="icon" onClick={onClose} className="h-8 w-8">
+                                        <X className="h-4 w-4" />
+                                        <span className="sr-only">Close</span>
+                                    </Button>
+                                </div>
+                            )}
                             <div className="p-6 overflow-y-auto">
                                 {children}
                             </div>

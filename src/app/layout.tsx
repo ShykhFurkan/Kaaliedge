@@ -64,6 +64,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ModalProvider } from "@/context/modal-context";
 import { ConsultationModal } from "@/components/common/consultation-modal";
+import { AdmissionsPopup } from "@/components/common/admissions-popup";
 import { WhatsAppFloat } from "@/components/common/whatsapp-float";
 import { Toaster } from "sonner";
 
@@ -97,6 +98,7 @@ export default function RootLayout({
             </main>
             <Footer />
             <ConsultationModal />
+            <AdmissionsPopup />
             <WhatsAppFloat />
             <Toaster position="top-center" richColors />
           </ModalProvider>

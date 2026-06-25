@@ -32,7 +32,7 @@ export function Hero() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                             </span>
-                            Admissions Open for 2025-26
+                            Admissions Open for 2026-27
                         </div>
 
                         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold font-heading text-slate-900 leading-tight tracking-tight">
