@@ -56,7 +56,7 @@ export function CountriesSection() {
                             borderClass = "border-green-200";
                             iconClass = "text-green-600";
                         } else {
-                            // Fallback / Iran (Indigo/Slate)
+                            // Fallback (Indigo/Slate)
                             bgClass = "bg-indigo-50/80 hover:bg-indigo-100/80 hover:shadow-indigo-200/50";
                             textClass = "text-indigo-900";
                             watermarkClass = "text-indigo-200/40";

@@ -137,7 +137,7 @@ export const countries: Country[] = [
         flag: "🇰🇿",
         description: "Strong medical infrastructure with WHO/NMC recognized universities.",
         overview: "Kazakhstan is known for its strong medical infrastructure, WHO/NMC-recognized universities, and a safe environment for international students.",
-        duration: "5 Years + 1 Year Internship",
+        duration: "5 Years + 2 Year Internship",
         universities: [
             {
                 name: "Semey State University",
@@ -233,6 +233,30 @@ export const countries: Country[] = [
         duration: "6 Years",
         universities: [
             {
+                name: "Central University of Europe",
+                location: "Tbilisi, Georgia",
+                description: "A modern European-standard medical university in Tbilisi offering English-medium MBBS programs.",
+                highlights: ["Affordable", "Recognized", "English-medium"]
+            },
+            {
+                name: "European University",
+                location: "Tbilisi",
+                description: "A well-established institution providing internationally aligned medical education and clinical training.",
+                highlights: ["Affordable", "Recognized", "English-medium"]
+            },
+            {
+                name: "Central University of Europe",
+                location: "Kutaisi",
+                description: "The Kutaisi campus of Central University of Europe, offering quality medical education in western Georgia.",
+                highlights: ["Affordable", "Recognized", "English-medium"]
+            },
+            {
+                name: "Caucasus University",
+                location: "Tbilisi",
+                description: "A leading private university in Georgia known for modern facilities and strong international partnerships.",
+                highlights: ["Affordable", "Recognized", "English-medium"]
+            },
+            {
                 name: "Batumi Shota Rustaveli State University",
                 location: "Batumi",
                 description: "Located in a coastal city, offering a blend of high-quality education and quality of life.",
@@ -272,49 +296,6 @@ export const countries: Country[] = [
         ],
         safety: "Ranked as one of the safest countries in the world.",
         food: "European and diverse food options available."
-    },
-    {
-        name: "Iran",
-        slug: "iran",
-        code: "IR",
-        flag: "🇮🇷",
-        description: "Strong medical education tradition with affordable fees.",
-        overview: "Iran has a strong medical education tradition and is recognized by international bodies. It is an affordable option for Kashmiri students offering high standards.",
-        duration: "7 Years",
-        universities: [
-            {
-                name: "Urmia University of Medical Sciences",
-                location: "Urmia",
-                description: "A prominent university known for its medical research and education.",
-                highlights: ["Affordable", "Recognized", "English-medium"]
-            },
-            {
-                name: "IAU Tehran",
-                location: "Tehran",
-                description: "The medical branch of the Islamic Azad University, offering vast resources.",
-                highlights: ["Affordable", "Recognized", "English-medium"]
-            },
-            {
-                name: "Shahid Beheshti University of Medical Sciences",
-                location: "Tehran",
-                description: "One of the top medical universities in Iran with a massive hospital network.",
-                highlights: ["Affordable", "Recognized", "English-medium"]
-            }
-        ],
-        admissionRequirements: [
-            "50% in PCB",
-            "NEET Qualification"
-        ],
-        feeRange: "15 - 20 Lakhs INR (Total)",
-        climate: "Diverse climate with four distinct seasons.",
-        whyChoose: [
-            "Excellent academic standards",
-            "Safe and culturally familiar environment",
-            "Experienced faculty",
-            "Affordable fees"
-        ],
-        safety: "Safe and hospitable environment for students.",
-        food: "Halal food is the norm; very compatible with Kashmiri diet."
     }
 ];
 

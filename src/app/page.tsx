@@ -15,11 +15,11 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <Hero />
+      <CountriesSection />
       <AboutSection />
       {/* Critical sections are loaded directly, others lazy loaded */}
       <ServicesSection />
       <WhyChoose />
-      <CountriesSection />
       <Workflow />
       <TestimonialsSection />
       <CtaBanner />
