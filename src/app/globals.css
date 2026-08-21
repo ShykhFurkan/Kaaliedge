@@ -4,18 +4,19 @@
   --font-sans: 'Inter', sans-serif;
   --font-heading: 'Playfair Display', serif;
 
-  --color-primary: #0F2C59;
-  --color-secondary: #0A5C36;
-  --color-accent: #D4A017;
+  --color-primary: #0F1B3D;
+  --color-secondary: #1B4332;
+  --color-accent: #C9A227;
+  --color-tint: #F7F8FA;
 
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
+  --color-border: #E5E7EB;
+  --color-input: #E5E7EB;
+  --color-ring: #0F1B3D;
+  --color-background: #FFFFFF;
+  --color-foreground: #0F1B3D;
 
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card: #FFFFFF;
+  --color-card-foreground: #0F1B3D;
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -151,5 +152,60 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /* Card Texture & Pop Effects */
+  .card-texture {
+    position: relative;
+    background-color: #FFFFFF;
+    background-image: radial-gradient(rgba(15, 27, 61, 0.035) 1px, transparent 1px);
+    background-size: 16px 16px;
+    border: 1px solid #E5E7EB;
+    box-shadow: 0 4px 20px -2px rgba(15, 27, 61, 0.05), 0 2px 6px -1px rgba(15, 27, 61, 0.03);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-texture::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, rgba(15, 27, 61, 0.18), transparent);
+    border-radius: 9999px;
+  }
+
+  .card-texture:hover {
+    transform: translateY(-4px);
+    border-color: rgba(15, 27, 61, 0.25);
+    box-shadow: 0 16px 32px -4px rgba(15, 27, 61, 0.1), 0 4px 12px -2px rgba(15, 27, 61, 0.05);
+  }
+
+  /* Horizontal Marquee Right-to-Left Animation */
+  @keyframes marquee-scroll {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee-slow {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 35s linear infinite;
+  }
+
+  .animate-marquee-fast {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 22s linear infinite;
+  }
+
+  .animate-marquee-slow:hover,
+  .animate-marquee-fast:hover {
+    animation-play-state: paused;
   }
 }

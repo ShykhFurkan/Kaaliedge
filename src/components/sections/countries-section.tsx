@@ -2,110 +2,124 @@
 import { Container } from "@/components/ui/container";
 import { countries } from "@/data/countries";
 import Link from "next/link";
-import { ArrowRight, Wallet, Clock } from "lucide-react";
+import { ArrowRight, Wallet, Clock, Sparkles } from "lucide-react";
 
 export function CountriesSection() {
     return (
-        <section id="countries" className="bg-transparent py-24 relative overflow-hidden border-t border-slate-200/50">
+        <section id="countries" className="bg-[#F7F8FA] py-24 relative overflow-hidden border-t border-[#EDEEF1]">
             <Container>
                 <div className="text-center max-w-3xl mx-auto mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold font-heading text-slate-900 mb-6 tracking-tight">Choose Your Destination</h2>
-                    <p className="text-xl text-slate-600 font-light leading-relaxed">
-                        Explore top universities across the globe tailored for Indian students.
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-heading text-[#0F1B3D] mb-4 tracking-tight">
+                        Choose Your Destination
+                    </h2>
+                    <p className="text-base sm:text-lg text-[#4B5563] font-light leading-relaxed">
+                        Explore WHO & NMC recognized medical universities across top global destinations tailored for Indian students.
                     </p>
                 </div>
 
-                <div className="flex items-center gap-2 mb-4 md:hidden text-xs font-bold text-black animate-pulse px-1">
-                    <ArrowRight className="w-3 h-3" />
-                    <span>Swipe right to see more</span>
+                {/* Mobile View: Touch / Drag Scrollable Slider */}
+                <div className="block sm:hidden relative">
+                    <div className="flex items-center gap-2 mb-3 text-xs font-semibold text-[#4B5563]">
+                        <ArrowRight className="w-3.5 h-3.5 text-[#0F1B3D]" />
+                        <span>Swipe / drag to view all 6 destinations</span>
+                    </div>
+
+                    <div className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar gap-4 pb-4 -mx-4 px-4 active:cursor-grabbing">
+                        {countries.map((country, index) => {
+                            const isFeatured = country.slug === 'russia' || country.slug === 'uzbekistan';
+
+                            return (
+                                <div
+                                    key={country.slug}
+                                    className="w-[82vw] max-w-[300px] shrink-0 snap-center"
+                                >
+                                    <Link href={`/destinations/${country.slug}`} className="block group h-full">
+                                        <div className="relative h-full flex flex-col justify-between p-6 rounded-2xl card-texture overflow-hidden">
+                                            {isFeatured && (
+                                                <div className="absolute top-3 right-3 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#C9A227]/10 text-[#C9A227] text-[10px] font-semibold uppercase tracking-wider border border-[#C9A227]/20">
+                                                    <Sparkles className="w-2.5 h-2.5" /> Popular
+                                                </div>
+                                            )}
+                                            <div>
+                                                <div className="mb-4">
+                                                    <div className="text-3xl mb-2">{country.flag}</div>
+                                                    <h3 className="text-xl font-bold font-heading text-[#0F1B3D]">
+                                                        {country.name}
+                                                    </h3>
+                                                </div>
+                                                <p className="text-[#4B5563] text-xs font-light leading-relaxed mb-4 line-clamp-3">
+                                                    {country.description}
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <div className="flex items-center gap-1.5 mb-3 pt-3 border-t border-[#EDEEF1]">
+                                                    <span className="text-[11px] font-semibold text-[#0F1B3D] bg-[#F7F8FA] border border-[#E5E7EB] px-2.5 py-1 rounded-full">
+                                                        💰 {country.feeRange}
+                                                    </span>
+                                                </div>
+                                                <div className="inline-flex items-center font-semibold text-xs text-[#0F1B3D]">
+                                                    Explore Universities <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
 
-                <div className="flex md:grid md:grid-cols-3 gap-6 md:gap-10 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-8 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 no-scrollbar">
+                {/* Tablet & Desktop View: 3x2 Grid */}
+                <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     {countries.map((country, index) => {
-                        // Color Theme Logic based on User Request directly matching Mission Section
-                        let themeClass = "";
-                        let textClass = "";
-                        let watermarkClass = "";
-                        let bgClass = "";
-                        let buttonClass = "";
-                        let borderClass = "";
-                        let iconClass = "";
-
-                        if (country.slug === 'russia' || country.slug === 'kyrgyzstan') {
-                            // Blue Theme (Matches Transparency)
-                            bgClass = "bg-blue-50/80 hover:bg-blue-100/80 hover:shadow-blue-200/50";
-                            textClass = "text-blue-900";
-                            watermarkClass = "text-blue-200/40";
-                            buttonClass = "text-blue-900 border-blue-200 bg-white/60 hover:bg-blue-100 hover:text-black hover:border-blue-600";
-                            borderClass = "border-blue-200";
-                            iconClass = "text-blue-600";
-                        } else if (country.slug === 'uzbekistan' || country.slug === 'bangladesh') {
-                            // Amber Theme (Matches Student First)
-                            bgClass = "bg-amber-50/80 hover:bg-amber-100/80 hover:shadow-amber-200/50";
-                            textClass = "text-amber-900";
-                            watermarkClass = "text-amber-200/40";
-                            buttonClass = "text-amber-900 border-amber-200 bg-white/60 hover:bg-amber-100 hover:text-black hover:border-amber-600";
-                            borderClass = "border-amber-200";
-                            iconClass = "text-amber-600";
-                        } else if (country.slug === 'kazakhstan' || country.slug === 'georgia') {
-                            // Green Theme (Matches Continuous Support)
-                            bgClass = "bg-green-50/80 hover:bg-green-100/80 hover:shadow-green-200/50";
-                            textClass = "text-green-900";
-                            watermarkClass = "text-green-200/40";
-                            buttonClass = "text-green-900 border-green-200 bg-white/60 hover:bg-green-100 hover:text-black hover:border-green-600";
-                            borderClass = "border-green-200";
-                            iconClass = "text-green-600";
-                        } else {
-                            // Fallback (Indigo/Slate)
-                            bgClass = "bg-indigo-50/80 hover:bg-indigo-100/80 hover:shadow-indigo-200/50";
-                            textClass = "text-indigo-900";
-                            watermarkClass = "text-indigo-200/40";
-                            buttonClass = "text-indigo-900 border-indigo-200 bg-white/60 hover:bg-indigo-100 hover:text-black hover:border-indigo-600";
-                            borderClass = "border-indigo-200";
-                            iconClass = "text-indigo-600";
-                        }
+                        const isFeatured = country.slug === 'russia' || country.slug === 'uzbekistan';
 
                         return (
                             <div
                                 key={country.slug}
-                                className="min-w-[85vw] md:min-w-0 snap-center fade-up"
-                                style={{ animationDelay: `${index * 0.1}s` }}
+                                className="fade-up"
+                                style={{ animationDelay: `${index * 0.08}s` }}
                             >
-                                <Link href={`/countries/${country.slug}`} className="block group h-full">
-                                    <div className={`relative h-full overflow-hidden transition-all duration-500 ease-out hover:-translate-y-3 pt-12 pb-8 px-8 rounded-3xl border ${borderClass} shadow-xl backdrop-blur-md ${bgClass}`}>
+                                <Link href={`/destinations/${country.slug}`} className="block group h-full">
+                                    <div className="relative h-full flex flex-col justify-between p-6 sm:p-8 rounded-2xl card-texture overflow-hidden">
+                                        {/* Optional Featured Badge */}
+                                        {isFeatured && (
+                                            <div className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C9A227]/10 text-[#C9A227] text-xs font-semibold uppercase tracking-wider border border-[#C9A227]/20">
+                                                <Sparkles className="w-3 h-3" /> Popular Choice
+                                            </div>
+                                        )}
 
-                                        {/* Massive Watermark Code */}
-                                        <div className={`absolute -right-6 -top-4 text-[12rem] font-black leading-none tracking-tighter select-none pointer-events-none transition-colors duration-500 font-heading z-0 opacity-40 mix-blend-multiply ${watermarkClass}`}>
-                                            {country.code}
-                                        </div>
-
-                                        <div className="relative z-10 flex flex-col h-full">
+                                        <div>
                                             {/* Flag & Title */}
-                                            <div className="mb-8">
-                                                <div className="text-5xl mb-6 filter drop-shadow-sm">{country.flag}</div>
-                                                <h3 className={`text-3xl font-bold font-heading mb-2 ${textClass}`}>{country.name}</h3>
+                                            <div className="mb-6">
+                                                <div className="text-4xl mb-4">{country.flag}</div>
+                                                <h3 className="text-2xl font-bold font-heading text-[#0F1B3D] group-hover:text-[#1B4332] transition-colors">
+                                                    {country.name}
+                                                </h3>
                                             </div>
 
                                             {/* Description */}
-                                            <p className="text-slate-600 font-light mb-10 leading-relaxed min-h-[50px] text-[15px]">
+                                            <p className="text-[#4B5563] text-sm font-light leading-relaxed mb-6 line-clamp-3">
                                                 {country.description}
                                             </p>
+                                        </div>
 
-                                            {/* Info Pills */}
-                                            <div className="flex flex-wrap gap-3 mb-10 mt-auto">
-                                                <div className="flex items-center gap-2 bg-white/80 border border-slate-100 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wide text-slate-600 shadow-sm backdrop-blur-sm">
-                                                    <Clock className={`w-3.5 h-3.5 ${iconClass}`} />
+                                        <div>
+                                            {/* Info Badges */}
+                                            <div className="flex flex-wrap items-center gap-2 mb-6 pt-4 border-t border-[#EDEEF1]">
+                                                <div className="inline-flex items-center gap-1.5 bg-[#F7F8FA] border border-[#E5E7EB] px-3 py-1.5 rounded-full text-xs font-medium text-[#0F1B3D] whitespace-nowrap">
+                                                    <Clock className="w-3.5 h-3.5 text-[#1B4332]" />
                                                     <span>{country.duration}</span>
                                                 </div>
-                                                <div className="flex items-center gap-2 bg-white/80 border border-slate-100 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wide text-slate-600 shadow-sm backdrop-blur-sm">
-                                                    <Wallet className={`w-3.5 h-3.5 ${iconClass}`} />
-                                                    <span className="truncate max-w-[120px]">{country.feeRange}</span>
+                                                <div className="inline-flex items-center gap-1.5 bg-[#F7F8FA] border border-[#E5E7EB] px-3 py-1.5 rounded-full text-xs font-semibold text-[#0F1B3D] whitespace-nowrap">
+                                                    <Wallet className="w-3.5 h-3.5 text-[#C9A227]" />
+                                                    <span>{country.feeRange}</span>
                                                 </div>
                                             </div>
 
-                                            {/* Action Button */}
-                                            <div className={`w-full py-4 rounded-xl flex items-center justify-center font-bold text-sm tracking-wide transition-all duration-300 border shadow-sm group-hover:shadow-md ${buttonClass}`}>
-                                                View Details <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                            {/* Action Link */}
+                                            <div className="inline-flex items-center font-semibold text-sm text-[#0F1B3D] group-hover:text-[#1B4332] transition-colors">
+                                                Explore Universities <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1.5" />
                                             </div>
                                         </div>
                                     </div>

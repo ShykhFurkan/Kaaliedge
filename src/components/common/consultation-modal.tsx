@@ -5,48 +5,52 @@ import { Modal } from "@/components/ui/modal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState, useRef } from "react";
-import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
-
 export function ConsultationModal() {
     const { isOpen, closeModal } = useModal();
     const [isLoading, setIsLoading] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const form = useRef<HTMLFormElement>(null);
 
-    const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+    const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsLoading(true);
 
         if (!form.current) return;
 
+        const formData = new FormData(form.current);
+        const data = {
+            name: formData.get("name"),
+            phone: formData.get("phone"),
+            email: formData.get("email"),
+            message: formData.get("message"),
+        };
 
-        emailjs
-            .sendForm(
-                process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-                process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-                form.current,
-                {
-                    publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
-                }
-            )
-            .then(
-                () => {
-                    setSubmitted(true);
-                    toast.success("Request received!");
-                    setTimeout(() => {
-                        setSubmitted(false);
-                        closeModal();
-                    }, 3000);
-                },
-                (error) => {
-                    toast.error("Failed to make request. Please try again.");
-                    console.error("FAILED...", error);
-                }
-            )
-            .finally(() => {
-                setIsLoading(false);
+        try {
+            const response = await fetch("/api/send-email", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
             });
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+                setSubmitted(true);
+                toast.success("Request received!");
+                setTimeout(() => {
+                    setSubmitted(false);
+                    closeModal();
+                }, 3000);
+            } else {
+                toast.error(result.error || "Failed to make request. Please try again.");
+            }
+        } catch (error) {
+            console.error("Failed to send consultation request...", error);
+            toast.error("Failed to make request. Please try again.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (

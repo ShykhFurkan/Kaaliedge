@@ -27,6 +27,11 @@ export const metadata: Metadata = {
     description: "Trusted guidance for MBBS aspirants in Kashmir. Contact Kaali Edge for transparent admissions.",
     creator: "@kaaliedge",
   },
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/favicon.ico",
+    apple: "/icon.png",
+  },
   alternates: {
     canonical: "https://kaaliedge.com",
   },
@@ -34,21 +39,54 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Kaali Edge",
-  "url": "https://kaaliedge.com",
-  "logo": "https://kaaliedge.com/logo.png",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+91-6005533853",
-    "contactType": "customer service",
-    "areaServed": "IN",
-    "availableLanguage": ["English", "Urdu", "Kashmiri", "Hindi"]
-  },
-  "sameAs": [
-    "https://facebook.com/kaaliedge",
-    "https://instagram.com/kaaliedge",
-    "https://linkedin.com/company/kaaliedge"
+  "@graph": [
+    {
+      "@type": "EducationalOrganization",
+      "@id": "https://kaaliedge.com/#organization",
+      "name": "Kaali Edge",
+      "url": "https://kaaliedge.com",
+      "logo": "https://kaaliedge.com/icon.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-6005533853",
+        "contactType": "customer service",
+        "areaServed": "IN",
+        "availableLanguage": ["English", "Urdu", "Kashmiri", "Hindi"]
+      },
+      "sameAs": [
+        "https://facebook.com/kaaliedge",
+        "https://instagram.com/kaaliedge",
+        "https://linkedin.com/company/kaaliedge"
+      ]
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://kaaliedge.com/#localbusiness",
+      "name": "Kaali Edge Education Consultancy",
+      "image": "https://kaaliedge.com/icon.png",
+      "url": "https://kaaliedge.com",
+      "telephone": "+91-6005533853",
+      "priceRange": "₹₹",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Anchidora",
+        "addressLocality": "Anantnag",
+        "addressRegion": "Jammu and Kashmir",
+        "postalCode": "192101",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 33.7311,
+        "longitude": 75.1489
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "10:00",
+        "closes": "18:00"
+      }
+    }
   ]
 };
 

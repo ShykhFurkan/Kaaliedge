@@ -1,77 +1,24 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 export function BackgroundPattern() {
     return (
-        <div className="fixed inset-0 -z-50 overflow-hidden pointer-events-none select-none">
-            {/* Base Background */}
-            <div className="absolute inset-0 bg-white" />
-
-            {/* Animated Clouds / Blobs */}
-            <div className="absolute inset-0">
-                {/* Blob 1: Primary Blue (Top Left) */}
-                <motion.div
-                    animate={{
-                        x: [0, 50, -50, 0],
-                        y: [0, 30, 0, 0],
-                        scale: [1, 1.1, 1, 1]
-                    }}
-                    transition={{
-                        duration: 20,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                        ease: "easeInOut"
-                    }}
-                    className="absolute -top-[10%] -left-[10%] w-[90vw] h-[90vw] md:w-[50vw] md:h-[50vw] rounded-full bg-blue-400/20 blur-[80px] md:blur-[100px]"
-                />
-
-                {/* Blob 2: Secondary Green (Bottom Right) */}
-                <motion.div
-                    animate={{
-                        x: [0, -30, 30, 0],
-                        y: [0, -50, 0, 0],
-                        scale: [1, 1.2, 1, 1]
-                    }}
-                    transition={{
-                        duration: 25,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                        ease: "easeInOut",
-                        delay: 2
-                    }}
-                    className="absolute -bottom-[10%] -right-[10%] w-[90vw] h-[90vw] md:w-[50vw] md:h-[50vw] rounded-full bg-green-400/20 blur-[80px] md:blur-[100px]"
-                />
-
-                {/* Blob 3: Accent Gold (Center-ish) */}
-                <motion.div
-                    animate={{
-                        x: [0, 40, -40, 0],
-                        y: [0, 40, -40, 0],
-                    }}
-                    transition={{
-                        duration: 30,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                        ease: "easeInOut",
-                        delay: 5
-                    }}
-                    className="absolute top-[30%] left-[30%] w-[70vw] h-[70vw] md:w-[40vw] md:h-[40vw] rounded-full bg-yellow-400/20 blur-[100px] md:blur-[120px]"
-                />
-            </div>
-
-            {/* Architectural Grid Overlay */}
+        <div className="fixed inset-0 -z-50 pointer-events-none select-none overflow-hidden bg-[#FAFAF9]">
+            {/* Fine Paper Grain Texture Overlay */}
             <div
-                className="absolute inset-0 opacity-[0.8]"
+                className="absolute inset-0 opacity-50 mix-blend-multiply"
                 style={{
-                    backgroundImage: `linear-gradient(to right, #cbd5e1 1px, transparent 1px),
-                                     linear-gradient(to bottom, #cbd5e1 1px, transparent 1px)`,
-                    backgroundSize: '40px 40px'
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperNoise)' opacity='0.08'/%3E%3C/svg%3E")`
                 }}
             />
 
-            {/* Vignette for focus */}
-            <div className="absolute inset-0 bg-[radial-gradient(transparent_0%,white_100%)] opacity-60" />
+            {/* Subtle Dot Matrix Grid Texture */}
+            <div className="absolute inset-0 bg-[radial-gradient(#CBD5E1_1px,transparent_1px)] [background-size:24px_24px] opacity-35" />
+
+            {/* Ambient Background Glows */}
+            <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#0F1B3D]/5 rounded-full blur-[140px]" />
+            <div className="absolute top-[40%] -right-40 w-[600px] h-[600px] bg-[#1B4332]/5 rounded-full blur-[140px]" />
+            <div className="absolute -bottom-40 left-[30%] w-[600px] h-[600px] bg-[#C9A227]/5 rounded-full blur-[140px]" />
         </div>
     );
 }
+

@@ -1,61 +1,118 @@
 
 import { Container } from "@/components/ui/container";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 import { BookConsultationBtn } from "@/components/common/book-consultation-btn";
 import { services } from "@/data/services";
 
 export function ServicesSection() {
     return (
-        <section id="services" className="bg-transparent min-h-screen py-16 border-b border-border">
-            {/* Hero */}
-            <div className="text-center mb-12">
-                <Container>
-                    <h2 className="text-4xl md:text-5xl font-bold font-heading text-slate-900 mb-6 tracking-tight">Our Services</h2>
-                    <p className="text-xl text-slate-600 max-w-2xl mx-auto font-light leading-relaxed">
-                        Comprehensive support at every stage of your medical education journey.
+        <section id="services" className="bg-[#F7F8FA] py-24 border-b border-[#EDEEF1]">
+            <Container className="space-y-16">
+                <div className="text-center max-w-3xl mx-auto">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-heading text-[#0F1B3D] mb-4 tracking-tight">
+                        Our Services
+                    </h2>
+                    <p className="text-base sm:text-lg text-[#4B5563] font-light leading-relaxed">
+                        Comprehensive end-to-end guidance across every stage of your medical education journey.
                     </p>
-                </Container>
-            </div>
-
-            <Container>
-                <div className="flex items-center gap-2 mb-4 md:hidden text-xs font-bold text-black animate-pulse px-1">
-                    <ArrowRight className="w-3 h-3" />
-                    <span>Swipe right to see more</span>
                 </div>
 
-                {/* Mobile: Horizontal Scroll | Desktop: Grid */}
-                <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-8 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 no-scrollbar">
-                    {services.map((service, index) => (
-                        <div
-                            key={index}
-                            className="min-w-[85vw] md:min-w-0 snap-center fade-up"
-                            style={{ animationDelay: `${index * 0.1}s` }}
-                        >
-                            <Card className={`h-full border shadow-sm backdrop-blur-md hover:-translate-y-2 transition-all duration-300 group ${service.cardBg} ${service.borderColor}`}>
-                                <CardHeader className="pb-2">
-                                    <div className={`h-14 w-14 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm ${service.iconBg} ${service.iconColor}`}>
-                                        <service.icon className="h-7 w-7" />
+                {/* Mobile View: Animated Right-to-Left Marquee */}
+                <div className="block sm:hidden w-full overflow-hidden no-scrollbar py-2">
+                    <div className="animate-marquee-slow flex items-stretch gap-4">
+                        {[...services, ...services].map((service, index) => {
+                            const isNavy = service.accent === "navy";
+                            const iconColorClass = isNavy ? "text-[#0F1B3D]" : "text-[#1B4332]";
+
+                            return (
+                                <div
+                                    key={index}
+                                    className="w-[270px] shrink-0"
+                                >
+                                    <div className="h-full flex flex-col justify-between p-6 rounded-2xl card-texture group overflow-hidden">
+                                        <div>
+                                            <div className="mb-4 inline-flex p-3 rounded-xl bg-[#F7F8FA] border border-[#E5E7EB]">
+                                                <service.icon className={`h-5 w-5 ${iconColorClass}`} />
+                                            </div>
+                                            <h3 className="text-lg font-bold font-heading text-[#0F1B3D] mb-2">
+                                                {service.title}
+                                            </h3>
+                                            <p className="text-[#4B5563] text-xs font-light leading-relaxed mb-4 line-clamp-3">
+                                                {service.description}
+                                            </p>
+                                        </div>
+                                        <div className="pt-3 border-t border-[#EDEEF1] flex items-center justify-between">
+                                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#9CA3AF]">
+                                                Step 0{(index % services.length) + 1}
+                                            </span>
+                                            <div className="inline-flex items-center text-xs font-semibold text-[#0F1B3D]">
+                                                Learn More <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <CardTitle className={`text-xl font-heading opacity-90 ${service.color}`}>{service.title}</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <p className="text-slate-600 text-[15px] leading-relaxed font-light">
-                                        {service.description}
-                                    </p>
-                                </CardContent>
-                            </Card>
-                        </div>
-                    ))}
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
 
-                {/* Call to Action */}
-                <div className="mt-24 p-8 text-center max-w-4xl mx-auto">
-                    <h3 className="text-3xl font-bold font-heading text-slate-900 mb-4 tracking-tight">Ready to start your application?</h3>
-                    <p className="text-slate-600 mb-8 font-light text-lg">
-                        Get expert advice on documentation and university selection today.
+                {/* Tablet & Desktop View: 3-Column Grid */}
+                <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    {services.map((service, index) => {
+                        const isNavy = service.accent === "navy";
+                        const iconColorClass = isNavy ? "text-[#0F1B3D]" : "text-[#1B4332]";
+
+                        return (
+                            <div
+                                key={index}
+                                className="fade-up"
+                                style={{ animationDelay: `${index * 0.08}s` }}
+                            >
+                                <div className="h-full flex flex-col justify-between p-6 sm:p-8 rounded-2xl card-texture group overflow-hidden">
+                                    <div>
+                                        {/* Icon */}
+                                        <div className="mb-6 inline-flex p-3.5 rounded-xl bg-[#F7F8FA] border border-[#E5E7EB]">
+                                            <service.icon className={`h-6 w-6 ${iconColorClass}`} />
+                                        </div>
+
+                                        {/* Title & Description */}
+                                        <h3 className="text-xl font-bold font-heading text-[#0F1B3D] mb-3 group-hover:text-[#1B4332] transition-colors">
+                                            {service.title}
+                                        </h3>
+                                        <p className="text-[#4B5563] text-sm font-light leading-relaxed mb-6">
+                                            {service.description}
+                                        </p>
+                                    </div>
+
+                                    <div className="pt-4 border-t border-[#EDEEF1] flex items-center justify-between">
+                                        <span className="text-xs font-semibold uppercase tracking-wider text-[#9CA3AF]">
+                                            Step 0{index + 1}
+                                        </span>
+                                        <div className="inline-flex items-center text-xs font-semibold text-[#0F1B3D] group-hover:text-[#1B4332] transition-colors">
+                                            Learn More <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+
+                {/* Call to Action Banner Box */}
+                <div className="p-8 sm:p-10 rounded-2xl card-texture text-center max-w-4xl mx-auto space-y-4 overflow-hidden">
+                    <h3 className="text-2xl sm:text-3xl font-bold font-heading text-[#0F1B3D] tracking-tight">
+                        Ready to Begin Your Application Process?
+                    </h3>
+                    <p className="text-[#4B5563] text-base font-light max-w-xl mx-auto">
+                        Speak directly with Dr. Mustansir and our senior counselors for personalized advice on university eligibility and documentation.
                     </p>
-                    <BookConsultationBtn className="inline-flex h-12 items-center justify-center rounded-full bg-slate-900 text-white px-8 font-medium transition-colors hover:bg-slate-800" label="Book Free Consultation" />
+                    <div className="pt-2">
+                        <BookConsultationBtn
+                            size="lg"
+                            className="bg-[#0F1B3D] text-white hover:bg-[#0F1B3D]/90 h-13 px-8 text-base font-semibold rounded-full shadow-sm"
+                            label="Book Free Counseling Session"
+                        />
+                    </div>
                 </div>
             </Container>
         </section>

@@ -11,11 +11,11 @@ import { BookConsultationBtn } from "@/components/common/book-consultation-btn";
 
 const navLinks = [
     { href: "/", label: "Home" },
-    { href: "#about", label: "About Us" },
-    { href: "#services", label: "Services" },
-    { href: "#countries", label: "Countries" },
-    { href: "#testimonials", label: "Testimonials" },
-    { href: "#contact", label: "Contact" },
+    { href: "/services", label: "Services" },
+    { href: "/destinations", label: "Destinations" },
+    { href: "/about", label: "About Us" },
+    { href: "/blog", label: "Blog" },
+    { href: "/contact", label: "Contact" },
 ];
 
 export function Navbar() {
@@ -28,35 +28,41 @@ export function Navbar() {
     }, [pathname]);
 
     return (
-        <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60 dark:border-slate-800">
+        <header className="sticky top-0 z-40 w-full border-b border-[#E5E7EB] bg-white/95 backdrop-blur-md">
             <Container>
                 <div className="flex h-16 items-center justify-between">
                     <Link href="/" className="flex items-center space-x-2">
-                        <span className="text-xl font-bold font-heading !text-black">Kaali<span className="!text-black">Edge</span></span>
+                        <span className="text-xl font-bold font-heading text-[#0F1B3D]">
+                            Kaali<span className="text-[#1B4332]">Edge</span>
+                        </span>
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden md:flex items-center gap-6">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className={cn(
-                                    "text-sm font-medium transition-colors hover:text-primary",
-                                    pathname === link.href ? "text-primary font-semibold" : "text-muted-foreground"
-                                )}
-                            >
-                                {link.label}
-                            </Link>
-                        ))}
+                    <nav className="hidden md:flex items-center gap-8">
+                        {navLinks.map((link) => {
+                            const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+                            return (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className={cn(
+                                        "text-sm font-medium transition-colors hover:text-[#0F1B3D]",
+                                        isActive ? "text-[#0F1B3D] font-semibold underline underline-offset-4 decoration-[#C9A227] decoration-2" : "text-[#4B5563]"
+                                    )}
+                                >
+                                    {link.label}
+                                </Link>
+                            );
+                        })}
                         <div className="flex items-center gap-3">
-                            <BookConsultationBtn size="sm" className="bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 font-semibold shadow-sm" />
+                            <BookConsultationBtn size="sm" className="bg-[#0F1B3D] text-white hover:bg-[#0F1B3D]/90 font-medium rounded-full px-5 h-9 text-xs" label="Book Free Consultation" />
                         </div>
                     </nav>
 
-                    <div className="md:hidden flex items-center gap-4">
+                    <div className="md:hidden flex items-center gap-3">
+                        <BookConsultationBtn size="sm" className="bg-[#0F1B3D] text-white hover:bg-[#0F1B3D]/90 font-medium rounded-full px-3 h-8 text-xs" label="Book Free" />
                         <button
-                            className="p-2 !text-black hover:text-primary"
+                            className="p-2 text-[#0F1B3D] hover:text-[#1B4332]"
                             onClick={() => setIsOpen(!isOpen)}
                             aria-label="Toggle menu"
                         >
@@ -73,23 +79,28 @@ export function Navbar() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden border-b bg-background dark:border-slate-800"
+                        className="md:hidden border-b border-[#E5E7EB] bg-white"
                     >
-                        <Container className="py-4 flex flex-col space-y-4">
-                            {navLinks.map((link) => (
-                                <Link
-                                    key={link.href}
-                                    href={link.href}
-                                    onClick={() => setIsOpen(false)}
-                                    className={cn(
-                                        "text-sm font-medium p-2 rounded-md hover:bg-accent/10 dark:hover:bg-slate-800 transition-colors",
-                                        pathname === link.href ? "text-primary dark:text-white bg-primary/5 dark:bg-slate-800" : "text-muted-foreground dark:text-slate-400"
-                                    )}
-                                >
-                                    {link.label}
-                                </Link>
-                            ))}
-                            <BookConsultationBtn className="w-full bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 dark:bg-white dark:text-black font-semibold shadow-sm" />
+                        <Container className="py-4 flex flex-col space-y-3">
+                            {navLinks.map((link) => {
+                                const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+                                return (
+                                    <Link
+                                        key={link.href}
+                                        href={link.href}
+                                        onClick={() => setIsOpen(false)}
+                                        className={cn(
+                                            "text-base font-medium p-3 rounded-lg transition-colors",
+                                            isActive ? "text-[#0F1B3D] bg-[#F7F8FA] font-semibold border-l-4 border-[#0F1B3D]" : "text-[#4B5563] hover:bg-[#F7F8FA]"
+                                        )}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                );
+                            })}
+                            <div className="pt-2">
+                                <BookConsultationBtn className="w-full bg-[#0F1B3D] text-white hover:bg-[#0F1B3D]/90 font-medium rounded-full h-11" label="Book Free Consultation" />
+                            </div>
                         </Container>
                     </motion.div>
                 )}
